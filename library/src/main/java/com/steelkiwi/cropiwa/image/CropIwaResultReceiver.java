@@ -49,7 +49,11 @@ public class CropIwaResultReceiver extends BroadcastReceiver {
     }
 
     public void unregister(Context context) {
-        context.unregisterReceiver(this);
+        try {
+            context.unregisterReceiver(this);
+        } catch (Exception exception) {
+            // Fail silently
+        }
     }
 
     public void setListener(Listener listener) {
