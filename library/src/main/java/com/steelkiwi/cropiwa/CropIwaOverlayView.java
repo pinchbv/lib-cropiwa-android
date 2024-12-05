@@ -5,9 +5,11 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import androidx.annotation.Nullable;
 import android.view.MotionEvent;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.steelkiwi.cropiwa.config.ConfigChangeListener;
 import com.steelkiwi.cropiwa.config.CropIwaOverlayConfig;
@@ -75,7 +77,7 @@ class CropIwaOverlayView extends View implements ConfigChangeListener, OnImagePo
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(@NonNull Canvas canvas) {
         if (shouldDrawOverlay) {
             canvas.drawRect(0, 0, getWidth(), getHeight(), overlayPaint);
             if (isValidCrop()) {

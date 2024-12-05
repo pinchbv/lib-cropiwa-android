@@ -6,16 +6,18 @@ import android.content.Context;
 import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import androidx.annotation.FloatRange;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
-import android.widget.ImageView;
+
+import androidx.annotation.FloatRange;
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
 
 import com.steelkiwi.cropiwa.config.ConfigChangeListener;
 import com.steelkiwi.cropiwa.config.CropIwaImageViewConfig;
 import com.steelkiwi.cropiwa.util.CropIwaUtils;
-import com.steelkiwi.cropiwa.util.MatrixUtils;
 import com.steelkiwi.cropiwa.util.MatrixAnimator;
+import com.steelkiwi.cropiwa.util.MatrixUtils;
 import com.steelkiwi.cropiwa.util.TensionInterpolator;
 
 /**
@@ -23,7 +25,7 @@ import com.steelkiwi.cropiwa.util.TensionInterpolator;
  * 03.02.2017.
  */
 @SuppressLint("ViewConstructor")
-class CropIwaImageView extends ImageView implements OnNewBoundsListener, ConfigChangeListener {
+class CropIwaImageView extends AppCompatImageView implements OnNewBoundsListener, ConfigChangeListener {
 
     private Matrix imageMatrix;
     private MatrixUtils matrixUtils;
@@ -154,12 +156,7 @@ class CropIwaImageView extends ImageView implements OnNewBoundsListener, ConfigC
         updateImageBounds();
         allowedBounds.set(bounds);
         if (hasImageSize()) {
-            post(new Runnable() {
-                @Override
-                public void run() {
-                    animateToAllowedBounds();
-                }
-            });
+            post(this::animateToAllowedBounds);
             updateImageBounds();
             invalidate();
         }
@@ -173,7 +170,7 @@ class CropIwaImageView extends ImageView implements OnNewBoundsListener, ConfigC
         MatrixAnimator animator = new MatrixAnimator();
         animator.animate(imageMatrix, endMatrix, new ValueAnimator.AnimatorUpdateListener() {
             @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
+            public void onAnimationUpdate(@NonNull ValueAnimator animation) {
                 imageMatrix.set((Matrix) animation.getAnimatedValue());
                 setImageMatrix(imageMatrix);
                 updateImageBounds();
@@ -337,8 +334,8 @@ class CropIwaImageView extends ImageView implements OnNewBoundsListener, ConfigC
 
     public class GestureProcessor {
 
-        private ScaleGestureDetector scaleDetector;
-        private TranslationGestureListener translationGestureListener;
+        private final ScaleGestureDetector scaleDetector;
+        private final TranslationGestureListener translationGestureListener;
 
         public GestureProcessor() {
             scaleDetector = new ScaleGestureDetector(getContext(), new ScaleGestureListener());

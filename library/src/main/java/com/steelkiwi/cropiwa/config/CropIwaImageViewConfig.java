@@ -2,8 +2,9 @@ package com.steelkiwi.cropiwa.config;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import androidx.annotation.FloatRange;
 import android.util.AttributeSet;
+
+import androidx.annotation.FloatRange;
 
 import com.steelkiwi.cropiwa.R;
 
@@ -36,8 +37,8 @@ public class CropIwaImageViewConfig {
         if (attrs == null) {
             return config;
         }
-        TypedArray ta = c.obtainStyledAttributes(attrs, R.styleable.CropIwaView);
-        try {
+
+        try (TypedArray ta = c.obtainStyledAttributes(attrs, R.styleable.CropIwaView)) {
             config.setMaxScale(ta.getFloat(
                     R.styleable.CropIwaView_ci_max_scale,
                     config.getMaxScale()));
@@ -49,8 +50,6 @@ public class CropIwaImageViewConfig {
                     config.isImageScaleEnabled()));
             config.setImageInitialPosition(InitialPosition.values()[
                     ta.getInt(R.styleable.CropIwaView_ci_initial_position, 0)]);
-        } finally {
-            ta.recycle();
         }
         return config;
     }
@@ -63,7 +62,7 @@ public class CropIwaImageViewConfig {
 
     private InitialPosition initialPosition;
 
-    private List<ConfigChangeListener> configChangeListeners;
+    private final List<ConfigChangeListener> configChangeListeners;
 
     public CropIwaImageViewConfig() {
         configChangeListeners = new ArrayList<>();

@@ -1,6 +1,7 @@
 package com.steelkiwi.cropiwa.util;
 
 import android.content.Context;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DimenRes;
@@ -12,7 +13,7 @@ import androidx.core.content.ContextCompat;
  */
 public class ResUtil {
 
-    private Context context;
+    private final Context context;
 
     public ResUtil(Context context) {
         this.context = context;

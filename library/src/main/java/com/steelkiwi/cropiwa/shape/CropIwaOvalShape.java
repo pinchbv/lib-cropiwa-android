@@ -16,7 +16,7 @@ import com.steelkiwi.cropiwa.config.CropIwaOverlayConfig;
  */
 public class CropIwaOvalShape extends CropIwaShape {
 
-    private Path clipPath;
+    private final Path clipPath;
 
     public CropIwaOvalShape(CropIwaOverlayConfig config) {
         super(config);

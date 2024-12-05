@@ -2,9 +2,10 @@ package com.steelkiwi.cropiwa.config;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.util.AttributeSet;
+
 import androidx.annotation.FloatRange;
 import androidx.annotation.NonNull;
-import android.util.AttributeSet;
 
 import com.steelkiwi.cropiwa.AspectRatio;
 import com.steelkiwi.cropiwa.R;
@@ -50,8 +51,7 @@ public class CropIwaOverlayConfig {
         if (attrs == null) {
             return c;
         }
-        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.CropIwaView);
-        try {
+        try(TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.CropIwaView)) {
             c.setMinWidth(ta.getDimensionPixelSize(
                     R.styleable.CropIwaView_ci_min_crop_width,
                     c.getMinWidth()));
@@ -94,8 +94,6 @@ public class CropIwaOverlayConfig {
             c.setDynamicCrop(ta.getBoolean(
                     R.styleable.CropIwaView_ci_dynamic_aspect_ratio,
                     c.isDynamicCrop()));
-        } finally {
-            ta.recycle();
         }
         return c;
     }
@@ -121,8 +119,8 @@ public class CropIwaOverlayConfig {
     private boolean shouldDrawGrid;
     private CropIwaShape cropShape;
 
-    private List<ConfigChangeListener> listeners;
-    private List<ConfigChangeListener> iterationList;
+    private final List<ConfigChangeListener> listeners;
+    private final List<ConfigChangeListener> iterationList;
 
     public CropIwaOverlayConfig() {
         listeners = new ArrayList<>();
