@@ -7,6 +7,8 @@ import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
+
 /**
  * @author yarolegovich
  * 25.02.2017.
@@ -18,13 +20,15 @@ public class CropIwaResultReceiver extends BroadcastReceiver {
     private static final String EXTRA_URI = "extra_uri";
 
     public static void onCropCompleted(Context context, Uri croppedImageUri) {
-        Intent intent = new Intent(ACTION_CROP_COMPLETED);
+        Intent intent = new Intent(ACTION_CROP_COMPLETED)
+                .setPackage(context.getPackageName());
         intent.putExtra(EXTRA_URI, croppedImageUri);
         context.sendBroadcast(intent);
     }
 
     public static void onCropFailed(Context context, Throwable e) {
-        Intent intent = new Intent(ACTION_CROP_COMPLETED);
+        Intent intent = new Intent(ACTION_CROP_COMPLETED)
+                .setPackage(context.getPackageName());
         intent.putExtra(EXTRA_ERROR, e);
         context.sendBroadcast(intent);
     }
@@ -45,7 +49,7 @@ public class CropIwaResultReceiver extends BroadcastReceiver {
 
     public void register(Context context) {
         IntentFilter filter = new IntentFilter(ACTION_CROP_COMPLETED);
-        context.registerReceiver(this, filter);
+        ContextCompat.registerReceiver(context, this, filter, ContextCompat.RECEIVER_NOT_EXPORTED);
     }
 
     public void unregister(Context context) {
