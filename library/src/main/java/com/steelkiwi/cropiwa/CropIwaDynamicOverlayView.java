@@ -19,6 +19,8 @@ import static com.steelkiwi.cropiwa.util.CropIwaUtils.dpToPx;
 import static com.steelkiwi.cropiwa.util.CropIwaUtils.enlargeRectBy;
 import static com.steelkiwi.cropiwa.util.CropIwaUtils.moveRectBounded;
 
+import androidx.annotation.NonNull;
+
 /**
  * @author yarolegovich
  * on 05.02.2017.
@@ -182,7 +184,7 @@ class CropIwaDynamicOverlayView extends CropIwaOverlayView {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(@NonNull Canvas canvas) {
         if (shouldDrawOverlay) {
             super.onDraw(canvas);
             if (areCornersInitialized()) {
@@ -238,11 +240,11 @@ class CropIwaDynamicOverlayView extends CropIwaOverlayView {
 
     private class CornerPoint {
 
-        private RectF clickableArea;
+        private final RectF clickableArea;
 
-        private PointF thisPoint;
-        private PointF horizontalNeighbourPoint;
-        private PointF verticalNeighbourPoint;
+        private final PointF thisPoint;
+        private final PointF horizontalNeighbourPoint;
+        private final PointF verticalNeighbourPoint;
 
         public CornerPoint(
                 PointF thisPoint, PointF horizontalNeighbourPoint,

@@ -11,10 +11,10 @@ import android.os.AsyncTask;
  */
 class LoadImageTask extends AsyncTask<Void, Void, Throwable> {
 
-    private Context context;
-    private Uri uri;
-    private int desiredWidth;
-    private int desiredHeight;
+    private final Context context;
+    private final Uri uri;
+    private final int desiredWidth;
+    private final int desiredHeight;
 
     private Bitmap result;
 

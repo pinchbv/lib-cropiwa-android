@@ -1,11 +1,9 @@
 package com.steelkiwi.cropiwa;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
@@ -17,9 +15,9 @@ import com.steelkiwi.cropiwa.config.CropIwaSaveConfig;
 import com.steelkiwi.cropiwa.image.CropArea;
 import com.steelkiwi.cropiwa.image.CropIwaBitmapManager;
 import com.steelkiwi.cropiwa.image.CropIwaResultReceiver;
-import com.steelkiwi.cropiwa.util.LoadBitmapCommand;
 import com.steelkiwi.cropiwa.shape.CropIwaShapeMask;
 import com.steelkiwi.cropiwa.util.CropIwaLog;
+import com.steelkiwi.cropiwa.util.LoadBitmapCommand;
 
 /**
  * Created by yarolegovich on 02.02.2017.
@@ -57,7 +55,6 @@ public class CropIwaView extends FrameLayout {
         init(attrs);
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public CropIwaView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(attrs);

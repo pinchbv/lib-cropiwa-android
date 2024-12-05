@@ -16,10 +16,10 @@ import com.steelkiwi.cropiwa.config.CropIwaOverlayConfig;
  */
 public abstract class CropIwaShape implements ConfigChangeListener {
 
-    private Paint clearPaint;
-    private Paint cornerPaint;
-    private Paint gridPaint;
-    private Paint borderPaint;
+    private final Paint clearPaint;
+    private final Paint cornerPaint;
+    private final Paint gridPaint;
+    private final Paint borderPaint;
 
     protected CropIwaOverlayConfig overlayConfig;
 

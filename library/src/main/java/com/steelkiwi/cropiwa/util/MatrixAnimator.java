@@ -6,6 +6,8 @@ import android.animation.ValueAnimator;
 import android.graphics.Matrix;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
+import androidx.annotation.NonNull;
+
 import java.lang.ref.WeakReference;
 
 /**
@@ -23,9 +25,9 @@ public class MatrixAnimator {
 
     private static class MatrixEvaluator implements TypeEvaluator<Matrix> {
 
-        private Matrix current;
+        private final Matrix current;
         private Matrix lastStart, lastEnd;
-        private FloatEvaluator floatEvaluator;
+        private final FloatEvaluator floatEvaluator;
 
         private float initialTranslationX;
         private float initialTranslationY;
@@ -72,14 +74,14 @@ public class MatrixAnimator {
     }
     private static class SafeListener implements ValueAnimator.AnimatorUpdateListener {
 
-        private WeakReference<ValueAnimator.AnimatorUpdateListener> wrapped;
+        private final WeakReference<ValueAnimator.AnimatorUpdateListener> wrapped;
 
         private SafeListener(ValueAnimator.AnimatorUpdateListener wrapped) {
             this.wrapped = new WeakReference<>(wrapped);
         }
 
         @Override
-        public void onAnimationUpdate(ValueAnimator animation) {
+        public void onAnimationUpdate(@NonNull ValueAnimator animation) {
             ValueAnimator.AnimatorUpdateListener listener = wrapped.get();
             if (listener != null) {
                 listener.onAnimationUpdate(animation);

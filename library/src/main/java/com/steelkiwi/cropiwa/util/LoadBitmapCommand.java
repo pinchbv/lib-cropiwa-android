@@ -11,10 +11,10 @@ import com.steelkiwi.cropiwa.image.CropIwaBitmapManager;
  */
 public class LoadBitmapCommand {
 
-    private Uri uri;
+    private final Uri uri;
     private int width;
     private int height;
-    private CropIwaBitmapManager.BitmapLoadListener loadListener;
+    private final CropIwaBitmapManager.BitmapLoadListener loadListener;
 
     private boolean executed;
 

@@ -38,11 +38,12 @@ public class CropIwaResultReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Bundle extras = intent.getExtras();
+        if (extras == null) extras = new Bundle();
         if (listener != null) {
             if (extras.containsKey(EXTRA_ERROR)) {
                 listener.onCropFailed((Throwable) extras.getSerializable(EXTRA_ERROR));
             } else if (extras.containsKey(EXTRA_URI)) {
-                listener.onCropSuccess((Uri) extras.getParcelable(EXTRA_URI));
+                listener.onCropSuccess(extras.getParcelable(EXTRA_URI));
             }
         }
     }

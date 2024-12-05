@@ -19,11 +19,11 @@ import java.io.OutputStream;
 
 class CropImageTask extends AsyncTask<Void, Void, Throwable> {
 
-    private Context context;
-    private CropArea cropArea;
-    private CropIwaShapeMask mask;
-    private Uri srcUri;
-    private CropIwaSaveConfig saveConfig;
+    private final Context context;
+    private final CropArea cropArea;
+    private final CropIwaShapeMask mask;
+    private final Uri srcUri;
+    private final CropIwaSaveConfig saveConfig;
 
     public CropImageTask(
             Context context, CropArea cropArea, CropIwaShapeMask mask,

@@ -19,7 +19,7 @@ public class TensionInterpolator {
     private TensionBorder yTensionBounds;
     private TensionBorder xTensionBounds;
 
-    private Interpolator interpolator = new DecelerateInterpolator(2);
+    private final Interpolator interpolator = new DecelerateInterpolator(2);
 
     private float downX, downY;
 
@@ -73,8 +73,8 @@ public class TensionInterpolator {
 
     private static class TensionBorder {
 
-        private float negativeTensionStart;
-        private float positiveTensionStart;
+        private final float negativeTensionStart;
+        private final float positiveTensionStart;
 
         private TensionBorder(float negativeTensionStart, float positiveTensionStart) {
             this.negativeTensionStart = Math.max(negativeTensionStart, 0);

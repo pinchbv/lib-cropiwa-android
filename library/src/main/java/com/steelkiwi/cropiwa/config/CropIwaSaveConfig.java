@@ -2,6 +2,7 @@ package com.steelkiwi.cropiwa.config;
 
 import android.graphics.Bitmap;
 import android.net.Uri;
+
 import androidx.annotation.IntRange;
 
 import com.steelkiwi.cropiwa.image.CropIwaBitmapManager;
@@ -46,7 +47,7 @@ public class CropIwaSaveConfig {
 
     public static class Builder {
 
-        private CropIwaSaveConfig saveConfig;
+        private final CropIwaSaveConfig saveConfig;
 
         public Builder(Uri dstPath) {
             saveConfig = new CropIwaSaveConfig(dstPath);
